@@ -1,5 +1,5 @@
 /*
- * Created By Mr. Daniel Anchondo on June 26, 2020.
+ * Created By Daniel Anchondo on June 26, 2020.
  * CarMotors
  * Just an easy way to control your l298n and l293d.
  */
