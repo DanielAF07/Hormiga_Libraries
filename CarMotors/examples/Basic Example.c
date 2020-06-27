@@ -16,17 +16,17 @@ void loop()
 {
     CMsetSpeed(255,255); // Turn max speed on both motors
     delay(1000);
-    CMforwardFor(1000);  // 
-    CMbackwardFor(1000);
+    CMforwardFor(1000);  // Set Forward for a definite time
+    CMbackwardFor(1000); // Set Backward for a definite time
     delay(1000);
 
-    CMsetSpeed(255,-255);
-    if(CMleftIsMoving()){
+    CMsetSpeed(255,-255); // Turn different speed to motors.
+    if(CMleftIsMoving()){ // If left motor is moving, do...
     	powerLeft = CMleftGet();
     	directionLeft = CMleftDirection();
     }
 
-    if(CMrightIsMoving()){
+    if(CMrightIsMoving()){ // If right motor is moving, do...
     	powerRight = CMrightGet();
     	directionRight = CMrightDirection();
     }
