@@ -1,30 +1,50 @@
 #include "system.h"
-#include "keyPad.h"
+#include "KeyPad.h"
 
 #define HIGH 1
 #define LOW 0
 
-#define INPUT 1
-#define OUTPUT 0
-                       
+
+void copyArray(char templ[4][4], char copiedTemplate[4][4]){
+    for(int j = 0; j<4; j++){
+        for(int i = 0 ; i<4; i++){
+            templ[j][i] = copiedTemplate[j][i];
+        }
+    }
+}
+
 //Array con los 4 pines en las columnas, array con los 4 pines en las filas.
-Keypad newKeypad(int col[4], int row[4]){ // Registrar los pines que utiliza nuestro keypad utilizando 2 arrays de 4 variables.
+Keypad newKeypad(int col[4], int row[4], char template[4][4]){ // Registrar los pines que utiliza nuestro keypad utilizando 2 arrays de 4 variables.
     Keypad newPad;
     for(int i = 0; i<4; i++){
         newPad.cols[i] = col[i];
         newPad.rows[i] = row[i];
     }
-    newPad.type = 0;
+    copyArray(newPad.template, template);
     return newPad;
 }
 
-void setPinsMode(int arr[4], int state){//Privada // Poner array de 4 pines en modo especificado
+
+
+void setPinsMode(int arr[4], int state){//Privada // Poner array de 4 pines en modo INPUT
     for(int i = 0; i < 4; i++){
         pinMode(arr[i], state);
     }
 }
 
-int dRead(int arr[4]){ //Privada // Leer un array de 4 pines digitales
+void setInput(int arr[4]){//Privada
+    for(int i = 0; i < 4; i++){
+        pinMode(arr[i], INPUT);
+    }
+}
+
+void setOutput(int arr[4]){ //Privada
+    for(int i = 0; i < 4; i++){
+        pinMode(arr[i], OUTPUT);
+    }
+}
+
+int dRead(int arr[4]){ //Privada
     int enabled = 0;
     int arrValues[4];
     for(int i = 0; i < 4; i++){
@@ -36,7 +56,7 @@ int dRead(int arr[4]){ //Privada // Leer un array de 4 pines digitales
     return enabled;
 }
 
-void dWrite(int arr[4], int state){ // Privada // Mandar una señal + o - en un array de 4 pines
+void dWrite(int arr[4], int state){ // Privada
     for(int i = 0; i < 4; i++){
         digitalWrite(arr[i], state);
     }
@@ -58,57 +78,55 @@ char readKeypad(Keypad keyp){ // Retorna el char del ultimo boton presionado.
     }
     if(inputA != 0 && inputB != 0){
         int result = inputA*10 + inputB;
-        if(keyp.type == 0){
-            switch(result){
-                case 11:
-                    return '7';
-                break;
-                case 21:
-                    return '8';
-                break;
-                case 31:
-                    return '9';
-                break;
-                case 41:
-                    return '/';
-                break;
-                case 12:
-                    return '4';
-                break;
-                case 22:
-                    return '5';
-                break;
-                case 32:
-                    return '6';
-                break;
-                case 42:
-                    return '*';
-                break;
-                case 13:
-                    return '1';
-                break;
-                case 23:
-                    return '2';
-                break;
-                case 33:
-                    return '3';
-                break;
-                case 43:
-                    return '-';
-                break;
-                case 14:
-                    return 'C';
-                break;
-                case 24:
-                    return '0';
-                break;
-                case 34:
-                    return '=';
-                break;
-                case 44:
-                    return '+';
-                break;
-            }
+        switch(result){
+            case 11:
+                return keyp.template[0][0];
+            break;
+            case 21:
+                return keyp.template[0][1];
+            break;
+            case 31:
+                return keyp.template[0][2];
+            break;
+            case 41:
+                return keyp.template[0][3];
+            break;
+            case 12:
+                return keyp.template[1][0];
+            break;
+            case 22:
+                return keyp.template[1][1];
+            break;
+            case 32:
+                return keyp.template[1][2];
+            break;
+            case 42:
+                return keyp.template[1][3];
+            break;
+            case 13:
+                return keyp.template[2][0];
+            break;
+            case 23:
+                return keyp.template[2][1];
+            break;
+            case 33:
+                return keyp.template[2][2];
+            break;
+            case 43:
+                return keyp.template[2][3];
+            break;
+            case 14:
+                return keyp.template[3][0];
+            break;
+            case 24:
+                return keyp.template[3][1];
+            break;
+            case 34:
+                return keyp.template[3][2];
+            break;
+            case 44:
+                return keyp.template[3][3];
+            break;
         }
     }
 }

@@ -1,5 +1,5 @@
 /* 
- * File:   keyPad.h
+ * File:   KeyPad.h
  * Author: DanielAF07
  *
  * Created on 08 de julio de 2020
@@ -11,10 +11,10 @@
 typedef struct _Keypad{
     int cols[4];
     int rows[4];
-    int type; //Proximamente se agregaran tipos de keypad para hacer corresponder el char que retorna con el layout del keypad.
+    char template[4][4];
 } Keypad;
 
-Keypad newKeypad(int col[4], int row[4]); // Registrar un nuevo keypad (Es necesario hacerlo con 2 arrays que contengan los pines de las columnas y filas)
+Keypad newKeypad(int col[4], int row[4], char template[4][4]); // Pins Columnas, Pins Filas, Template del teclado
 char readKeypad(Keypad keyp); // Retorna char del boton presionado
 
 #ifdef	__cplusplus
