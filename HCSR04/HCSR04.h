@@ -7,15 +7,19 @@
 
 #ifndef HCSR04_H
 #define	HCSR04_H
-void HCSR04init(int a, int b);
-float getDistanceCM();
+typedef struct _HCSR04{
+    int triggerPin;
+    int echoPin;
+} HCSR04;
+
+HCSR04 HCSR04init(int a, int b);
+double getDistanceCM(HCSR04 sensor);
+double getDistanceInches(HCSR04 sensor);
+double getDistanceFeets(HCSR04 sensor);
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
-
-
 
 #ifdef	__cplusplus
 }
