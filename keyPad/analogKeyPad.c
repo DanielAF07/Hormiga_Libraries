@@ -1,7 +1,7 @@
 #include "system.h"
 #include "KeyPad.h"
 
-int analogValues[4][4] = { // Template de Valores Analogos. 
+int analogValues[4][4] = { // Analog Value Template. 
     {679, 505, 477, 446},
     {639, 407, 367, 322},
     {587, 263, 202, 130},
