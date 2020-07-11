@@ -10,7 +10,7 @@ void setup(){
 
 void loop(){
     int distance = getDistanceCM(sensor1);
-    if(distance < 10){ // Si la distancia es menor a 10 cm
+    if(distance < 10){ // 10 cm
         digitalWrite(13, HIGH);
     }
 }
