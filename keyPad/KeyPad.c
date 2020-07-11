@@ -36,7 +36,7 @@ void setTolerance(Keypad keypad, int tolerance){ // Set tolerance to analogKeypa
     keypad.tolerance = tolerance;
 }
 
-char readKeypad(Keypad keyp){ // Retorna el char del ultimo boton presionado.
+char readKeypad(Keypad keyp){ // Return the button you pressed.
     if(keyp.type == DIGITAL){
         return readDigital(keyp);
     } 
