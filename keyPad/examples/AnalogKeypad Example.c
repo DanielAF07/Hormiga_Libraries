@@ -14,8 +14,8 @@ char keypadTemplate[4][4] = {
 
 void setup() {
     pinMode(ledPin, OUTPUT);
-    myKeypad = newAnalogKeypad(0, keypadTemplate);
-    // setTolerance(myKeypad, 10) // Default is 12. Try < 12. Only if your keypad is working bad.
+    myKeypad = newAnalogKeypad(pinKeypad, keypadTemplate);
+    // setTolerance(myKeypad, 12) // Default = 12. Try < 12 only if your keypad is working bad.
 }
 
 void loop() {
