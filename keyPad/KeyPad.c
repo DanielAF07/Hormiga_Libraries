@@ -3,7 +3,7 @@
 #include "digitalKeyPad.h"
 #include "analogKeyPad.h"
 
-void copyArray(char templ[4][4], char copiedTemplate[4][4]){ /// Private // Just to copy a 2d Array.
+void copyArray(char templ[4][4], char copiedTemplate[4][4]){ /// Private // Just copy a 2d Array.
     for(int j = 0; j<4; j++){
         for(int i = 0 ; i<4; i++){
             templ[j][i] = copiedTemplate[j][i];
@@ -11,7 +11,6 @@ void copyArray(char templ[4][4], char copiedTemplate[4][4]){ /// Private // Just
     }
 }
 
-//Array con los 4 pines en las columnas, array con los 4 pines en las filas.
 Keypad newKeypad(int col[4], int row[4], char template[4][4]){ // Create a new Digital Keypad. // Array of cols pins, Array of rows pins, 2D array Template
     Keypad newPad;
     copyArray(newPad.template, template);
@@ -33,17 +32,15 @@ Keypad newAnalogKeypad(int pin, char template[4][4]){ // Create a New analog Key
     return newKeypad;
 }
 
-void setTolerance(Keypad keypad, int toler){ // Set tolerance to analogKeypad
-    keypad.tolerance = toler;
+void setTolerance(Keypad keypad, int tolerance){ // Set tolerance to analogKeypad
+    keypad.tolerance = tolerance;
 }
 
 char readKeypad(Keypad keyp){ // Retorna el char del ultimo boton presionado.
-    char valu;
     if(keyp.type == DIGITAL){
-        valu = readDigital(keyp);
+        return readDigital(keyp);
     } 
     else if(keyp.type == ANALOG){
-        valu = readAnalog(keyp);
+        return readAnalog(keyp);
     }
-    return valu;
 }
